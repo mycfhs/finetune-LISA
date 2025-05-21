@@ -143,7 +143,17 @@ def main(args):
 
     model.resize_token_embeddings(len(tokenizer))
 
-    state_dict = torch.load(args.weight, map_location="cpu")
+    # ! yyc change to load dir
+    if not os.path.isdir(args.weight): 
+        state_dict = torch.load(args.weight, map_location="cpu")
+    else:   # ! 
+        state_dict = {}
+        for file_name in os.listdir(args.weight):
+            if file_name.endswith(".bin"):
+                file_path = os.path.join(args.weight, file_name)
+                state_dict_single = torch.load(file_path, map_location="cpu")
+                state_dict.update(state_dict_single)
+
     model.load_state_dict(state_dict, strict=True)
 
     model = model.merge_and_unload()

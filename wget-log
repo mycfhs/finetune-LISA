@@ -1,0 +1,6 @@
+--2025-03-10 15:55:07--  https://cdn-lfs.hf.co/repos/3a/55/3a5563c40fdc106de00dd9a009c19f7a702d3200a3cd01d32b1a3c3218bf98e5/9290b230d2a80c782a21b508eff2da04ed373188f31e023302d73c18e55c28b6?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27pytorch_model-00002-of-00002.bin%3B+filename%3D%22pytorch_model-00002-of-00002.bin%22%3B
+正在解析主机 cdn-lfs.hf.co (cdn-lfs.hf.co)... 13.226.61.68, 13.226.61.49, 13.226.61.33, ...
+正在连接 cdn-lfs.hf.co (cdn-lfs.hf.co)|13.226.61.68|:443... 已连接。
+已发出 HTTP 请求，正在等待回应... 403 Forbidden
+2025-03-10 15:55:08 错误 403：Forbidden。
+

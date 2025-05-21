@@ -65,7 +65,7 @@ def parse_args(args):
     parser.add_argument("--epochs", default=10, type=int)
     parser.add_argument("--steps_per_epoch", default=500, type=int)
     parser.add_argument(
-        "--batch_size", default=2, type=int, help="batch size per device per step"
+        "--batch_size", default=1, type=int, help="batch size per device per step"
     )
     parser.add_argument(
         "--grad_accumulation_steps",
@@ -315,6 +315,9 @@ def main(args):
         ),
         config=ds_config,
     )
+    
+    # model_engine.save_checkpoint(os.path.join(args.log_dir, "ckpt_model"))
+    # exit()
 
     # resume deepspeed checkpoint
     if args.auto_resume and len(args.resume) == 0:
@@ -382,8 +385,9 @@ def main(args):
             best_score = max(giou, best_score)
             cur_ciou = ciou if is_best else cur_ciou
 
-        if args.no_eval or is_best:
-            save_dir = os.path.join(args.log_dir, "ckpt_model")
+        # if args.no_eval or is_best:
+        if True:
+            save_dir = os.path.join(args.log_dir, f"epoch_{epoch}","ckpt_model")
             if args.local_rank == 0:
                 torch.save(
                     {"epoch": epoch},

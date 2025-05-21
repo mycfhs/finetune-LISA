@@ -102,7 +102,13 @@ def _build_sam(
     )
     sam.eval()
     if checkpoint is not None:
+        # print("Loading checkpoint from", checkpoint)
+        # print("Press enter to continue")
+        # input()
         with open(checkpoint, "rb") as f:
             state_dict = torch.load(f)
-        sam.load_state_dict(state_dict, strict=False)
+        # state_dict = {k.replace("model.visual_model.", ""): v for k, v in state_dict.items() if k.begins_with("model.visual_model.")}
+        # sam.load_state_dict(state_dict, strict=False)
+        # ! yyc add. should with 'assign=True'
+        sam.load_state_dict(state_dict, strict=True, assign=True)
     return sam

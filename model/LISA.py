@@ -96,6 +96,12 @@ class LisaMetaModel:
             nn.Dropout(0.0),
         ]
         self.text_hidden_fcs = nn.ModuleList([nn.Sequential(*text_fc)])
+        
+        # ! yyc add to load fcs weight
+        if hasattr(self.config, "train_mask_decoder"):
+            fcs_weight = torch.load("./Lisa_tuned_fcs.bin")
+            self.text_hidden_fcs.load_state_dict(fcs_weight, strict=True, assign=True)
+        
         self.text_hidden_fcs.train()
         for param in self.text_hidden_fcs.parameters():
             param.requires_grad = True
@@ -126,7 +132,8 @@ class LISAForCausalLM(LlavaLlamaForCausalLM):
         config,
         **kwargs,
     ):
-        if not hasattr(config, "train_mask_decoder"):
+        # if not hasattr(config, "train_mask_decoder"):
+        if hasattr(config, "train_mask_decoder"):
             config.mm_use_im_start_end = kwargs.pop("use_mm_start_end", True)
             config.mm_vision_tower = kwargs.get(
                 "vision_tower", "openai/clip-vit-large-patch14"

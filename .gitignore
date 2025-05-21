@@ -1,4 +1,7 @@
 **/__pycache__
 runs/
 .vscode/
-
+vis*
+result*
+LISA*
+dataset*
