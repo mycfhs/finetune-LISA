@@ -4,7 +4,7 @@ import requests
 import time
 
 # OpenAI API Key
-api_key = "sk-MDKCnF2HVFIntoyPhJf7uyA100SpIpjntW44Np2SH6USMyOh"  # TODO: 替换为你的 API 密钥
+api_key = ""  # TODO: 替换为你的 API 密钥
 
 # 设置 OpenAI API 请求头
 headers = {
